@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Formatting;
 using System.Web.Http;
 
 namespace ArtistWebLayer
@@ -10,6 +11,12 @@ namespace ArtistWebLayer
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+            //Indent the JSON returned to make it similar to JSON example in assignment.
+            config.Formatters.Clear();
+            config.Formatters.Add(new JsonMediaTypeFormatter());
+            config.Formatters.JsonFormatter.SerializerSettings.Formatting
+              = Newtonsoft.Json.Formatting.Indented;
+
 
             // Web API routes
             config.MapHttpAttributeRoutes();
